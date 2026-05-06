@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site.js';
+
+// These are read at build time from Vercel env vars and inlined into the page.
+// They're the public anon keys, safe to expose.
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
+---
+<BaseLayout
+  title="Contact"
+  description="Get in touch with TIFA Property. Whether you have a single property or a full portfolio, we'll have an initial, no-obligation conversation about whether a partnership is right for you."
+>
+  <Hero
+    eyebrow="Landlord enquiry"
+    title="Let's talk about your property."
+    subtitle="Whether you have a single property or a full portfolio, we're happy to have an initial, no-obligation conversation to see if we're the right fit."
+    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+  />
+
+  <section class="py-20">
+    <div class="container-tight grid lg:grid-cols-3 gap-10">
+      <form id="enquiry-form" class="lg:col-span-2 grid sm:grid-cols-2 gap-5">
+        <label class="text-sm">First Name *
+          <input required name="first_name" type="text" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"/>
+        </label>
+        <label class="text-sm">Last Name *
+          <input required name="last_name" type="text" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"/>
+        </label>
+        <label class="text-sm">Email *
+          <input required name="email" type="email" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"/>
+        </label>
+        <label class="text-sm">Phone
+          <input name="phone" type="tel" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"/>
+        </label>
+        <label class="text-sm sm:col-span-2">Property Location(s)
+          <input name="locations" type="text" placeholder="e.g. Swansea, Cardiff" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"/>
+        </label>
+        <label class="text-sm">Preferred Letting Model
+          <select name="letting_model" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal">
+            <option>Not sure yet</option>
+            <option>Guaranteed Rent</option>
+            <option>Fully Managed Portfolio</option>
+          </select>
+        </label>
+        <label class="text-sm">Number of Properties
+          <select name="property_count" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal">
+            <option>1</option>
+            <option>2 to 5</option>
+            <option>6 to 10</option>
+            <option>10+</option>
+          </select>
+        </label>
+        <label class="text-sm sm:col-span-2">Anything else we should know?
+          <textarea name="message" rows="4" class="mt-1.5 block w-full border border-gray-300 rounded px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"></textarea>
+        </label>
+        <!-- Honeypot anti-spam, real users never see this -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+        <div class="sm:col-span-2">
+          <button type="submit" id="submit-btn" class="btn-primary">Request a Call Back
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+          <p id="form-status" class="mt-3 text-xs text-gray-500">We respond within 24 hours.</p>
+        </div>
+      </form>
+
+      <aside class="space-y-8">
+        <div class="bg-cream rounded-lg p-6">
+          <h2 class="font-serif text-lg">What happens next?</h2>
+          <ol class="mt-4 space-y-4 text-sm">
+            <li class="flex gap-3"><span class="w-7 h-7 rounded bg-teal text-white flex items-center justify-center shrink-0 text-xs font-semibold">1</span><span>We'll review your enquiry within 24 hours.</span></li>
+            <li class="flex gap-3"><span class="w-7 h-7 rounded bg-teal text-white flex items-center justify-center shrink-0 text-xs font-semibold">2</span><span>One of our team will call to discuss your requirements.</span></li>
+            <li class="flex gap-3"><span class="w-7 h-7 rounded bg-teal text-white flex items-center justify-center shrink-0 text-xs font-semibold">3</span><span>We'll arrange a property review if there's a good fit.</span></li>
+          </ol>
+        </div>
+        <div class="bg-navy text-white rounded-lg p-6">
+          <h2 class="font-serif text-lg">Contact details</h2>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li class="flex items-center gap-3"><Icon name="doc" class="w-4 h-4 text-teal-light"/><a href={`mailto:${site.email}`} class="hover:underline">{site.email}</a></li>
+            <li class="flex items-center gap-3"><Icon name="clock" class="w-4 h-4 text-teal-light"/><a href={`tel:${site.phoneE164}`} class="hover:underline">{site.phone}</a></li>
+            <li class="flex items-center gap-3"><Icon name="hands" class="w-4 h-4 text-teal-light"/><a href={`https://wa.me/${site.whatsapp.replace('+','')}`} class="hover:underline">WhatsApp</a></li>
+            <li class="flex items-center gap-3"><Icon name="pin" class="w-4 h-4 text-teal-light"/>Based in Swansea, covering South Wales</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script define:vars={{ SUPABASE_URL, SUPABASE_ANON_KEY }}>
+    const form = document.getElementById('enquiry-form');
+    const status = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // Honeypot: if filled, silently pretend success
+      if (form.website.value) {
+        status.textContent = 'Thanks. We\'ll be in touch within 24 hours.';
+        form.reset();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.6';
+      status.textContent = 'Sending...';
+      status.className = 'mt-3 text-xs text-gray-500';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      delete data.website;
+      data.source = 'website';
+      data.submitted_at = new Date().toISOString();
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/landlord_enquiries`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        status.textContent = 'Thanks. We\'ll be in touch within 24 hours.';
+        status.className = 'mt-3 text-sm text-teal font-medium';
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'Something went wrong. Email hello@tifa.co.uk or call 01792 677275 and we\'ll pick it up that way.';
+        status.className = 'mt-3 text-sm text-red-600';
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
+    });
+  </script>
+</BaseLayout>

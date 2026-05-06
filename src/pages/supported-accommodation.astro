@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Icon from '../components/Icon.astro';
+
+const standards = ['Professionally managed','Regularly inspected','Supported by trained staff','Operated within safeguarding and compliance frameworks'];
+
+const meaning = [
+  { icon: 'doc',    title: 'Clear oversight',           body: 'Every property has structured reporting, inspections, and compliance records. Nothing happens to your asset without it being recorded and visible.' },
+  { icon: 'users',  title: 'Responsible occupancy',     body: 'Occupancy is coordinated with trained support staff and safeguarding protocols, not a private tenant cycle.' },
+  { icon: 'home',   title: 'Active property management', body: 'Maintenance, inspections, and condition management handled end-to-end. The property is looked after as an asset.' },
+  { icon: 'shield', title: 'No direct involvement with occupants', body: 'TIFA Property is the sole point of contact. You never deal with the occupant directly.' },
+];
+---
+<BaseLayout
+  title="Supported Accommodation"
+  description="Professionally managed supported accommodation in partnership with TIFA Life. Clear oversight, responsible occupancy, full compliance, and zero direct landlord involvement."
+>
+  <Hero
+    eyebrow="Understanding supported accommodation"
+    title="Professionally managed, fully supported homes."
+    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Supported Accommodation' }]}
+  />
+
+  <section class="py-20">
+    <div class="container-tight grid lg:grid-cols-2 gap-12">
+      <div class="space-y-5 text-gray-700 leading-relaxed">
+        <p>Supported accommodation provides safe, structured housing for young people aged 16+ who require guidance as they transition toward independence. These are individuals who need a stable home environment combined with professional support to develop life skills, access education or employment, and build toward independent living.</p>
+        <p>For landlords, the model means a single, accountable operating partner taking full responsibility for property standards, compliance, and occupancy management. The property remains yours. The risk does not.</p>
+      </div>
+      <aside class="bg-navy text-white rounded-lg p-8 self-start">
+        <div class="text-xs uppercase tracking-widest text-teal-light">All properties used in this way are</div>
+        <ul class="mt-5 space-y-3 text-sm">
+          {standards.map(s => (
+            <li class="flex items-start gap-3"><span class="w-5 h-5 rounded bg-teal text-white flex items-center justify-center shrink-0"><Icon name="check" class="w-3.5 h-3.5"/></span>{s}</li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-serif">What this means for landlords.</h2>
+        <p class="mt-4 text-gray-600">Complete peace of mind with professional oversight at every level.</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        {meaning.map(m => (
+          <div class="bg-white border border-gray-200 rounded-lg p-7">
+            <div class="w-10 h-10 rounded bg-teal/10 text-teal flex items-center justify-center"><Icon name={m.icon} class="w-5 h-5"/></div>
+            <h3 class="mt-4 text-lg font-serif">{m.title}</h3>
+            <p class="mt-2 text-gray-600 leading-relaxed">{m.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    title="Ask us how supported accommodation works."
+    subtitle="We'll walk you through the model, the safeguards, and what it would look like for your specific property."
+    primaryLabel="Talk to Us About Your Property"
+  />
+</BaseLayout>

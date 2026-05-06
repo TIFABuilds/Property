@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Icon from '../components/Icon.astro';
+import { locations } from '../data/locations.js';
+
+const featuredAreas = locations.slice(0, 12);
+
+const pillars = [
+  { icon: 'shield', title: 'Partnership, not agency', body: 'We take operational control. Compliance, maintenance, tenant management, all of it. You step back completely.' },
+  { icon: 'trend',  title: 'Predictable income',     body: 'Guaranteed rent agreements deliver fixed monthly income with no exposure to voids or arrears.' },
+  { icon: 'doc',    title: 'Full compliance',        body: 'Safety certificates, regulatory obligations, Rent Smart Wales, EPC, gas, electrical. All managed.' },
+  { icon: 'users',  title: 'Long-term focus',        body: 'Multi-year partnerships built around stability and asset protection, not maximum yield.' },
+];
+
+const removed = [
+  'No more void periods',
+  'No more rent arrears',
+  'Compliance handled in full',
+  'Tenant management handled in full',
+  'Maintenance coordinated for you',
+  'Long-term agreements, not short lets',
+  'Asset protection prioritised',
+  'One point of contact, every issue',
+];
+
+const steps = [
+  { n: '01', title: 'Property and portfolio review',   body: 'We discuss your properties, your objectives, and the issues you want to be done with.' },
+  { n: '02', title: 'Agree the right model',           body: 'Guaranteed rent or fully managed. We recommend the structure that fits your situation.' },
+  { n: '03', title: 'We take control',                 body: 'Full operational and compliance handover. You step back from day-to-day involvement.' },
+  { n: '04', title: 'Stable income',                   body: 'Fixed monthly payments under a long-term agreement. No surprises, no chasing.' },
+];
+
+const audiences = [
+  { icon: 'users', title: 'Portfolio landlords',  body: 'Multiple properties, no time to manage them, want professional oversight without selling up.' },
+  { icon: 'wallet', title: 'Hands-off investors', body: 'Looking for predictable returns and zero involvement in day-to-day tenancy issues.' },
+  { icon: 'shield', title: 'Risk-averse owners',  body: 'Compliance, stability, and long-term asset protection matter more than chasing top-of-market rent.' },
+];
+---
+<BaseLayout
+  title="Guaranteed Rent and Property Management for South Wales Landlords"
+  description="TIFA Property gives South Wales landlords guaranteed monthly rent and full property management on long-term agreements. Based in Swansea. Covering Swansea, Cardiff, Newport, and the valleys."
+>
+  <Hero
+    eyebrow="For landlords across South Wales"
+    title="Guaranteed Rent and Professional Property Management for Landlords in South Wales"
+    subtitle="Stable income, full compliance, complete peace of mind. None of the day-to-day burden of letting."
+    primaryCta={{ label: 'Discuss Your Property', href: '/contact/' }}
+    secondaryCta={{ label: 'How Our Partnership Works', href: '/solutions/' }}
+  />
+
+  <!-- Stats -->
+  <section class="border-b border-gray-100">
+    <div class="container-tight py-14 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+      <div>
+        <div class="text-4xl font-serif text-teal">100+</div>
+        <div class="mt-2 text-sm text-gray-500 uppercase tracking-widest">Properties Managed</div>
+      </div>
+      <div>
+        <div class="text-4xl font-serif text-teal">99%</div>
+        <div class="mt-2 text-sm text-gray-500 uppercase tracking-widest">Landlord Satisfaction</div>
+      </div>
+      <div>
+        <div class="text-4xl font-serif text-teal">South Wales</div>
+        <div class="mt-2 text-sm text-gray-500 uppercase tracking-widest">Based in Swansea</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Positioning -->
+  <section class="py-20">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <div class="eyebrow">Why TIFA Property</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">We don't just find tenants. We take responsibility.</h2>
+        <p class="mt-5 text-gray-600 leading-relaxed">
+          TIFA Property is not a traditional letting agent. We work in long-term partnership with landlords, taking operational control of properties and delivering predictable, professionally managed income. The result is the same income each month, no calls about boilers, and an asset that holds its value.
+        </p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        {pillars.map(p => (
+          <div class="card">
+            <div class="w-10 h-10 rounded-md bg-teal/10 text-teal flex items-center justify-center"><Icon name={p.icon} class="w-5 h-5" /></div>
+            <h3 class="mt-4 text-xl font-serif">{p.title}</h3>
+            <p class="mt-2 text-gray-600 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Problems removed -->
+  <section class="py-20 bg-cream">
+    <div class="container-tight grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <div class="eyebrow">For landlords</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">We remove the problems that cost you time, money, and sleep.</h2>
+        <p class="mt-5 text-gray-600 leading-relaxed">
+          Voids and arrears eat into returns. Compliance pressure creates constant worry. Tenants and maintenance consume your time. With guaranteed rent and professional operational control, those issues stop being yours. You receive predictable income. We handle everything else.
+        </p>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-3">
+        {removed.map(item => (
+          <li class="flex items-start gap-3 bg-white border border-gray-200 rounded p-4">
+            <span class="mt-0.5 w-5 h-5 rounded bg-teal text-white flex items-center justify-center shrink-0"><Icon name="check" class="w-3.5 h-3.5"/></span>
+            <span class="text-sm text-gray-700">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-20">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <div class="eyebrow">How it works</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">A structured path to a hands-off partnership.</h2>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map(s => (
+          <div class="border border-gray-200 rounded-lg p-6">
+            <div class="inline-block bg-navy text-white text-sm font-semibold px-2.5 py-1 rounded">{s.n}</div>
+            <h3 class="mt-4 text-lg font-serif">{s.title}</h3>
+            <p class="mt-2 text-gray-600 text-sm leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Two models -->
+  <section class="py-20 bg-cream">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <div class="eyebrow">Partnership models</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">Two models. One commitment to stability.</h2>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        <div class="bg-white border border-gray-200 rounded-lg p-8">
+          <h3 class="text-xl font-serif">Guaranteed Rent</h3>
+          <p class="mt-3 text-gray-600 leading-relaxed">Fixed monthly income regardless of occupancy. We take full responsibility for property management, compliance, and tenant coordination.</p>
+          <ul class="mt-5 space-y-2 text-sm text-gray-700">
+            {['Predictable monthly payments','No void risk','Complete hands-off operation','Long-term agreement'].map(b => (
+              <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-teal"/>{b}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-8">
+          <h3 class="text-xl font-serif">Fully Managed</h3>
+          <p class="mt-3 text-gray-600 leading-relaxed">Professional management of your entire portfolio with oversight of compliance, maintenance, inspections, and tenant relationships.</p>
+          <ul class="mt-5 space-y-2 text-sm text-gray-700">
+            {['Expert compliance oversight','Professional tenant management','Strategic maintenance coordination','Regular portfolio reviews'].map(b => (
+              <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-teal"/>{b}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <a href="/solutions/" class="mt-8 inline-flex items-center gap-2 text-teal font-medium">Compare both models in detail
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Supported accommodation -->
+  <section class="py-20">
+    <div class="container-tight grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <div class="eyebrow">Supported accommodation</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">Professionally managed supported accommodation.</h2>
+        <p class="mt-5 text-gray-600 leading-relaxed">
+          A portion of our portfolio is used for professionally managed supported accommodation, delivered in partnership with TIFA Life. That means strong safeguarding protocols, regular inspections, and rigorous compliance oversight. The focus stays on asset protection and professional management.
+        </p>
+        <a href="/supported-accommodation/" class="mt-6 inline-flex items-center gap-2 text-teal font-medium">How supported accommodation works
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="grid gap-3">
+        {[
+          { icon: 'shield', title: 'Asset protection', body: 'Professional oversight protects the long-term value of the property.' },
+          { icon: 'eye',    title: 'Strong safeguarding', body: 'Trained staff, structured frameworks, and proper inspection regimes.' },
+          { icon: 'doc',    title: 'Risk management', body: 'Compliance handled to the highest standard, with clear reporting to landlords.' },
+        ].map(c => (
+          <div class="bg-navy text-white rounded-lg p-6 flex items-start gap-4">
+            <div class="w-10 h-10 rounded bg-teal/20 text-teal-light flex items-center justify-center shrink-0"><Icon name={c.icon} class="w-5 h-5"/></div>
+            <div>
+              <div class="font-serif text-lg">{c.title}</div>
+              <p class="mt-1 text-sm text-white/75">{c.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Audiences -->
+  <section class="py-20 bg-cream">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <div class="eyebrow">Who we work with</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">Landlords who value stability.</h2>
+      </div>
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        {audiences.map(a => (
+          <div class="card">
+            <div class="w-10 h-10 rounded bg-teal/10 text-teal flex items-center justify-center"><Icon name={a.icon} class="w-5 h-5"/></div>
+            <h3 class="mt-4 text-xl font-serif">{a.title}</h3>
+            <p class="mt-2 text-gray-600 leading-relaxed">{a.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas covered -->
+  <section class="py-20">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <div class="eyebrow">Areas we cover</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">Property management across South Wales.</h2>
+        <p class="mt-5 text-gray-600 leading-relaxed">From Swansea to Cardiff and across the valleys. Each area has its own page covering local context, neighbourhoods we work in, and how our partnership model fits the local rental market.</p>
+      </div>
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {featuredAreas.map(loc => (
+          <a href={`/property-management/${loc.slug}/`} class="border border-gray-200 rounded p-4 hover:border-teal hover:bg-cream transition-colors flex items-center justify-between">
+            <div>
+              <div class="font-medium">{loc.name}</div>
+              <div class="text-xs text-gray-500 mt-0.5">{loc.county}</div>
+            </div>
+            <svg class="w-4 h-4 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        ))}
+      </div>
+      <a href="/areas/" class="mt-6 inline-flex items-center gap-2 text-teal font-medium">View all coverage areas
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <CtaBlock />
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+const { name, class: className = 'w-6 h-6' } = Astro.props;
+const paths = {
+  shield: 'M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z',
+  trend: 'M3 17l6-6 4 4 8-8M14 7h7v7',
+  doc: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM14 2v6h6',
+  users: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75',
+  check: 'M20 6L9 17l-5-5',
+  cross: 'M18 6L6 18M6 6l12 12',
+  home: 'M3 10l9-7 9 7v10a2 2 0 01-2 2h-4a2 2 0 01-2-2v-5h-2v5a2 2 0 01-2 2H5a2 2 0 01-2-2V10z',
+  eye: 'M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7zM12 15a3 3 0 100-6 3 3 0 000 6z',
+  no: 'M4.93 4.93l14.14 14.14M12 22a10 10 0 110-20 10 10 0 010 20z',
+  heart: 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z',
+  pin: 'M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0zM12 13a3 3 0 100-6 3 3 0 000 6z',
+  clock: 'M12 6v6l4 2M22 12a10 10 0 11-20 0 10 10 0 0120 0z',
+  hands: 'M9 11.5a2.5 2.5 0 015 0V18M9 11.5V7a2 2 0 014 0v3M14 11.5a2.5 2.5 0 015 0V16a6 6 0 01-12 0v-2.5M2 9l4 4',
+  wallet: 'M21 12V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-2M16 12h5',
+};
+const d = paths[name] || paths.check;
+---
+<svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={d}/></svg>

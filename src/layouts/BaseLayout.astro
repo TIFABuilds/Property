@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.js';
+
+const {
+  title,
+  description = site.description,
+  pathname = Astro.url.pathname,
+  ogImage = '/og-default.svg',
+  schema = null,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
+const canonical = new URL(pathname, site.baseUrl).toString();
+
+const defaultLocalBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'PropertyValueSpecification',
+  '@id': site.baseUrl + '#organization',
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateAgent',
+  '@id': site.baseUrl + '#org',
+  name: site.name,
+  url: site.baseUrl,
+  email: site.email,
+  telephone: site.phoneE164,
+  description: site.description,
+  parentOrganization: {
+    '@type': 'Organization',
+    name: site.parentGroup,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.hqCity,
+    addressRegion: site.hqRegion,
+    addressCountry: 'GB',
+  },
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: site.serviceArea,
+  },
+};
+---
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content={new URL(ogImage, site.baseUrl).toString()} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

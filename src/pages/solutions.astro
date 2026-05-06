@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Icon from '../components/Icon.astro';
+
+const guaranteedRent = ['Fixed monthly income','No void periods','No rent arrears','No tenant management','No day-to-day involvement'];
+const fullyManaged = ['Full management and compliance','Inspections and maintenance coordination','Tenant and occupancy management','Strategic use planning per property'];
+---
+<BaseLayout
+  title="Solutions"
+  description="Two property partnership models for South Wales landlords. Guaranteed rent for fixed monthly income, or fully managed for hands-off oversight of your portfolio."
+>
+  <Hero
+    eyebrow="Our Solutions"
+    title="Partnership models built around you."
+    subtitle="Whether you want guaranteed income or comprehensive management, we have a structure designed for your situation."
+    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Solutions' }]}
+  />
+
+  <!-- Option 1 -->
+  <section class="py-20">
+    <div class="container-tight grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <div class="eyebrow">Option 01</div>
+        <h2 class="mt-3 text-3xl md:text-4xl font-serif">Guaranteed Rent</h2>
+        <p class="mt-5 text-gray-700 leading-relaxed">Our guaranteed rent model is designed for South Wales landlords who want certainty. We take your property on a long-term agreement and pay a fixed monthly rent, regardless of occupancy.</p>
+        <h3 class="mt-8 font-serif text-lg">What this means for you</h3>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-2">
+          {guaranteedRent.map(b => (
+            <li class="flex items-center gap-3 bg-cream rounded p-3 text-sm">
+              <span class="w-5 h-5 rounded bg-teal text-white flex items-center justify-center"><Icon name="check" class="w-3.5 h-3.5"/></span>{b}
+            </li>
+          ))}
+        </ul>
+        <a href="/contact/" class="mt-8 btn-primary">Enquire About Guaranteed Rent
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <div class="mt-3 text-xs text-gray-500">Long-term agreements · professional management · complete oversight</div>
+      </div>
+      <aside class="bg-navy text-white rounded-lg p-7">
+        <div class="text-xs uppercase tracking-widest text-teal-light">Property use</div>
+        <p class="mt-4 text-sm text-white/85 leading-relaxed">Properties are primarily used for supported accommodation through TIFA Life. Where appropriate, properties may be adapted to alternative strategies to ensure continuity and protection of income.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Option 2 -->
+  <section class="py-20 bg-cream">
+    <div class="container-tight grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <div class="eyebrow">Option 02</div>
+        <h2 class="mt-3 text-3xl md:text-4xl font-serif">Fully Managed Portfolio</h2>
+        <p class="mt-5 text-gray-700 leading-relaxed">For landlords with multiple properties, we offer full portfolio management. Compliance, lettings, strategic decisions, all of it handled.</p>
+        <blockquote class="mt-6 border-l-4 border-teal pl-5 italic text-ink/85 font-serif text-lg">You retain ownership. We handle the responsibility.</blockquote>
+        <h3 class="mt-8 font-serif text-lg">Includes</h3>
+        <ul class="mt-3 grid sm:grid-cols-2 gap-2">
+          {fullyManaged.map(b => (
+            <li class="flex items-center gap-3 bg-white border border-gray-200 rounded p-3 text-sm">
+              <span class="w-5 h-5 rounded bg-teal text-white flex items-center justify-center"><Icon name="check" class="w-3.5 h-3.5"/></span>{b}
+            </li>
+          ))}
+        </ul>
+        <a href="/contact/" class="mt-8 btn-primary">Discuss Portfolio Management
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <aside class="bg-navy text-white rounded-lg p-7 self-start">
+        <div class="text-xs uppercase tracking-widest text-teal-light">One partner. Total oversight.</div>
+        <div class="mt-4 text-4xl font-serif">100%</div>
+        <p class="mt-2 text-sm text-white/80 leading-relaxed">Hands-off management. We take care of every aspect of your portfolio while you focus on what matters to you.</p>
+        <div class="mt-5 text-xs text-white/60">Compliance · Maintenance · Strategy · Reporting</div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBlock
+    title="Not sure which model fits?"
+    subtitle="We're happy to discuss your situation and recommend the best approach for your portfolio."
+    primaryLabel="Let's Talk"
+  />
+</BaseLayout>

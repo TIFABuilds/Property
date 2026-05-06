@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Icon from '../components/Icon.astro';
+
+const approach = [
+  { title: 'Professional oversight, not reactive management', body: 'We anticipate issues before they become problems. Reactive management is what creates voids, arrears, and damaged stock.' },
+  { title: 'Clear agreements, realistic expectations',         body: 'Every term is set out plainly. We commit to what we can deliver and we deliver it.' },
+  { title: 'Asset protection and compliance first',            body: 'Your property is a long-term asset. We protect its condition and its compliance status above everything else.' },
+  { title: 'Flexibility to adapt property use if required',    body: 'Markets change. Where appropriate, properties can be adapted to alternative strategies, including supported accommodation through TIFA Life.' },
+];
+---
+<BaseLayout
+  title="About TIFA Property"
+  description="Based in Swansea and operating across South Wales. Professional property management focused on stability, compliance, and long-term partnerships with landlords."
+>
+  <Hero
+    eyebrow="About TIFA Property"
+    title="A property partner built on responsibility."
+    subtitle="Professional property management focused on stability, compliance, and long-term partnerships across South Wales."
+    breadcrumb={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+  />
+
+  <section class="py-20">
+    <div class="container-tight grid lg:grid-cols-3 gap-14">
+      <div class="lg:col-span-2 space-y-6 text-gray-700 leading-relaxed">
+        <p>Based in Swansea and operating across South Wales, TIFA Property was created to reduce landlord risk and unnecessary involvement through structured, professional property management.</p>
+        <p>As the property arm of TIFA Life, our properties may be used for structured, compliant supported accommodation where appropriate. That model delivers stability for landlords and safe homes for the communities we work in.</p>
+        <blockquote class="border-l-4 border-teal pl-5 italic text-ink/85 font-serif text-xl">
+          Our role is to remove risk, reduce day-to-day involvement, and protect the long-term value of residential property assets.
+        </blockquote>
+      </div>
+      <aside class="bg-navy text-white rounded-lg p-8 self-start">
+        <div class="text-xs uppercase tracking-widest text-teal-light">At a glance</div>
+        <ul class="mt-5 space-y-4 text-sm">
+          <li class="flex items-start gap-3"><span class="w-6 h-6 rounded bg-teal/20 text-teal-light flex items-center justify-center shrink-0"><Icon name="pin" class="w-3.5 h-3.5"/></span><span>Based in Swansea, covering South Wales</span></li>
+          <li class="flex items-start gap-3"><span class="w-6 h-6 rounded bg-teal/20 text-teal-light flex items-center justify-center shrink-0"><Icon name="shield" class="w-3.5 h-3.5"/></span><span>Compliance-led property management</span></li>
+          <li class="flex items-start gap-3"><span class="w-6 h-6 rounded bg-teal/20 text-teal-light flex items-center justify-center shrink-0"><Icon name="clock" class="w-3.5 h-3.5"/></span><span>Long-term partnership focus</span></li>
+          <li class="flex items-start gap-3"><span class="w-6 h-6 rounded bg-teal/20 text-teal-light flex items-center justify-center shrink-0"><Icon name="hands" class="w-3.5 h-3.5"/></span><span>Part of the TIFA Life Group</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream">
+    <div class="container-tight">
+      <div class="max-w-3xl">
+        <div class="eyebrow">How we operate</div>
+        <h2 class="mt-4 text-3xl md:text-4xl font-serif">Our approach.</h2>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        {approach.map(a => (
+          <div class="bg-white border border-gray-200 rounded-lg p-7">
+            <h3 class="text-lg font-serif">{a.title}</h3>
+            <p class="mt-2 text-gray-600 leading-relaxed">{a.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container-tight max-w-4xl">
+      <div class="eyebrow">Our structure</div>
+      <h2 class="mt-4 text-3xl md:text-4xl font-serif">Relationship with TIFA Life.</h2>
+      <div class="mt-6 space-y-5 text-gray-700 leading-relaxed">
+        <p>TIFA Property operates independently but in partnership with TIFA Life, which provides structured support services across South Wales.</p>
+        <p>While TIFA Life coordinates care and support for vulnerable young people, TIFA Property remains responsible for property standards, compliance oversight, and landlord outcomes. Assets are protected through robust operational frameworks and professional property management.</p>
+        <p>The partnership model lets us deliver stable, long-term agreements for landlords while maintaining the highest standards of property care and regulatory compliance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-cream">
+    <div class="container-tight grid md:grid-cols-3 gap-10 text-center">
+      <div>
+        <div class="eyebrow">Operating across</div>
+        <div class="mt-3 text-2xl font-serif">South Wales</div>
+      </div>
+      <div>
+        <div class="eyebrow">Professional</div>
+        <div class="mt-3 text-2xl font-serif">Compliance-led operation</div>
+      </div>
+      <div>
+        <div class="eyebrow">Long-term</div>
+        <div class="mt-3 text-2xl font-serif">Partnership focus</div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    title="Discuss whether TIFA Property is the right fit."
+    subtitle="We offer a no-obligation conversation to explore how our property partnerships work and whether our approach aligns with your objectives."
+    primaryLabel="Start a Conversation"
+    secondaryLabel="Learn How Our Partnerships Work"
+    secondaryHref="/solutions/"
+  />
+</BaseLayout>
